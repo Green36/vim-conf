@@ -1,0 +1,17 @@
+
+backup/*
+howm/*
+neocomplcache/*
+neomru/*
+wiki/*
+wikihtml/*
+
+!backup/.gitkeep
+!howm/.gitkeep
+!howm/Sche-Hd-0000-00-00-000000.mkd
+!neocomplcache/.gitkeep
+!neomru/.gitkeep
+!wiki/.gitkeep
+!wikihtml/.gitkeep
+
+
