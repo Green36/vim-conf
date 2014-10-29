@@ -133,10 +133,6 @@ if has('win32') || has('win64')
     " vimwiki 格納場所
     let g:vimwiki_list = [{'path':'$VIM/vimfiles/etc/wiki/', 'path_html':'$VIM/vimfiles/etc/wikihtml/'}]
 
-    " NeoBundle setting.
-    set rtp+=$VIM/vimfiles/NeoBundle/neobundle.vim/
-    call neobundle#rc(expand('$VIM/vimfiles/NeoBundle'))
-
     " NeoComplecache define dictionary.
     let g:neocomplcache_dictionary_filetype_lists = {
                 \ 'default' : '',
@@ -145,6 +141,7 @@ if has('win32') || has('win64')
                 \ }
     " QFixHowm set path
     let howm_dir = $VIM.'/vimfiles/etc/howm'
+
 else
     " バックアップファイルを作るディレクトリ
     set backupdir=~/.vim/etc/backup/
@@ -166,10 +163,6 @@ else
     " vimwiki 格納場所
     let g:vimwiki_list = [{'path':'~/.vim/etc/wiki/', 'path_html':'~/.vim/etc/wikihtml/'}]
 
-    " NeoBundle setting.
-    set rtp+=~/.vim/NeoBundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/NeoBundle'))
-
     " NeoComplecache define dictionary.
     let g:neocomplcache_dictionary_filetype_lists = {
                 \ 'default' : '',
@@ -188,23 +181,20 @@ else
         " set clipboard+=unnamed
         set clipboard=unnamedplus
     endif
+
 endif
 
 " }}}
 
-" {{{ *** プラグイン設定 ***
-
-" ### matchit setting ### {{{
-let b:match_words = "if:endif,if:else,(:),{:},[:]"
-" }}}
-
-" ### Align setting ### {{{
-let g:Align_xstrlen = 3 " for japanese string
-let g:DrChipTopLvlMenu = '' " remove 'DrChip' menu
-" }}}
-
 " ### NeoBundle Setting ### {{{
-filetype off
+
+if has('win32') || has('win64')
+    set rtp+=$VIM/vimfiles/NeoBundle/neobundle.vim/
+    call neobundle#begin(expand('$VIM/vimfiles/NeoBundle'))
+else
+    set rtp+=~/.vim/NeoBundle/neobundle.vim/
+    call neobundle#begin(expand('~/.vim/NeoBundle'))
+endif
 
 " call vundle#rc()
 NeoBundle 'Shougo/neobundle.vim.git'
@@ -251,7 +241,18 @@ NeoBundle 'kannokanno/previm'
 NeoBundle 'fuenor/qfixhowm.git'
 
 
-filetype plugin indent on
+call neobundle#end()
+" }}}
+
+" {{{ *** プラグイン設定 ***
+
+" ### matchit setting ### {{{
+let b:match_words = "if:endif,if:else,(:),{:},[:]"
+" }}}
+
+" ### Align setting ### {{{
+let g:Align_xstrlen = 3 " for japanese string
+let g:DrChipTopLvlMenu = '' " remove 'DrChip' menu
 " }}}
 
 " ### vim-quickhl Setting ### {{{
