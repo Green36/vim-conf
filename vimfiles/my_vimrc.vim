@@ -63,7 +63,7 @@ set ruler
 " タブや改行を表示 (nolist:非表示)
 set list
 
-どの文字でタブや改行を表示するかを設定
+" どの文字でタブや改行を表示するかを設定
 if !has('gui_running')
     set listchars=tab:▸\ ,trail:_,nbsp:%,extends:>,precedes:<,eol:¬
 endif
