@@ -64,9 +64,9 @@ set ruler
 set list
 
 " どの文字でタブや改行を表示するかを設定
-if !has('gui_running')
-    set listchars=tab:▸\ ,trail:_,nbsp:%,extends:>,precedes:<,eol:¬
-endif
+" if !has('gui_running')
+"     set listchars=tab:▸\ ,trail:_,nbsp:%,extends:>,precedes:<,eol:¬
+" endif
 
 " 長い行を折り返さない (wrap:折り返す)
 set nowrap
@@ -115,10 +115,10 @@ set wildmode=longest:full,list
 
 if has('win32') || has('win64')
     " バックアップファイルを作るディレクトリ
-    set backupdir=$VIM/vimfiles/etc/backup
+    set backupdir=$HOMEPATH/vimfiles/etc/backup
 
     " スワップファイル用のディレクトリ
-    set directory=$VIM/vimfiles/etc/backup
+    set directory=$HOMEPATH/vimfiles/etc/backup
 
     " grep設定
     set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
@@ -127,20 +127,20 @@ if has('win32') || has('win64')
     let mygrepprg   = 'findstr'
 
     " neomru 保存場所
-    let g:neomru#file_mru_path=expand('$VIM/vimfiles/etcwin/neomru/file')
-    let g:neomru#directory_mru_path=expand('$VIM/vimfiles/etcwin/neomru/direcroty')
+    let g:neomru#file_mru_path=expand('$HOMEPATH/vimfiles/etcwin/neomru/file')
+    let g:neomru#directory_mru_path=expand('$HOMEPATH/vimfiles/etcwin/neomru/direcroty')
 
     " vimwiki 格納場所
-    let g:vimwiki_list = [{'path':'$VIM/vimfiles/etc/wiki/', 'path_html':'$VIM/vimfiles/etc/wikihtml/'}]
+    let g:vimwiki_list = [{'path':'$HOMEPATH/vimfiles/etc/wiki/', 'path_html':'$HOMEPATH/vimfiles/etc/wikihtml/'}]
 
     " NeoComplecache define dictionary.
     let g:neocomplcache_dictionary_filetype_lists = {
                 \ 'default' : '',
-                \ 'vimshell' : $VIM.'/etc/neocomplcache/.vimshell_hist',
-                \ 'scheme' : $VIM.'/etc/neocomplcache/.gosh_completions'
+                \ 'vimshell' : $HOMEPATH.'/vimfiles/etc/neocomplcache/.vimshell_hist',
+                \ 'scheme' : $HOMEPATH.'/vimfiles/etc/neocomplcache/.gosh_completions'
                 \ }
     " QFixHowm set path
-    let howm_dir = $VIM.'/vimfiles/etc/howm'
+    let howm_dir = $HOMEPATH.'/vimfiles/etc/howm'
 
 else
     " バックアップファイルを作るディレクトリ
