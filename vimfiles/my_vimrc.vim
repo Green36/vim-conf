@@ -63,10 +63,10 @@ set ruler
 " タブや改行を表示 (nolist:非表示)
 set list
 
-" どの文字でタブや改行を表示するかを設定
-" if !has('gui_running')
-"     set listchars=tab:▸\ ,trail:_,nbsp:%,extends:>,precedes:<,eol:¬
-" endif
+どの文字でタブや改行を表示するかを設定
+if !has('gui_running')
+    set listchars=tab:▸\ ,trail:_,nbsp:%,extends:>,precedes:<,eol:¬
+endif
 
 " 長い行を折り返さない (wrap:折り返す)
 set nowrap
@@ -136,11 +136,11 @@ if has('win32') || has('win64')
     " NeoComplecache define dictionary.
     let g:neocomplcache_dictionary_filetype_lists = {
                 \ 'default' : '',
-                \ 'vimshell' : $HOMEPATH.'/vimfiles/etc/neocomplcache/.vimshell_hist',
-                \ 'scheme' : $HOMEPATH.'/vimfiles/etc/neocomplcache/.gosh_completions'
+                \ 'vimshell' : '$HOMEPATH/vimfiles/etc/neocomplcache/.vimshell_hist',
+                \ 'scheme' : '$HOMEPATH/vimfiles/etc/neocomplcache/.gosh_completions'
                 \ }
     " QFixHowm set path
-    let howm_dir = $HOMEPATH.'/vimfiles/etc/howm'
+    let howm_dir = '$HOMEPATH/vimfiles/etc/howm'
 
 else
     " バックアップファイルを作るディレクトリ
@@ -189,8 +189,8 @@ endif
 " ### NeoBundle Setting ### {{{
 
 if has('win32') || has('win64')
-    set rtp+=$VIM/vimfiles/NeoBundle/neobundle.vim/
-    call neobundle#begin(expand('$VIM/vimfiles/NeoBundle'))
+    set rtp+=$HOMEPATH/vimfiles/NeoBundle/neobundle.vim/
+    call neobundle#begin(expand('$HOMEPATH/vimfiles/NeoBundle'))
 else
     set rtp+=~/.vim/NeoBundle/neobundle.vim/
     call neobundle#begin(expand('~/.vim/NeoBundle'))
