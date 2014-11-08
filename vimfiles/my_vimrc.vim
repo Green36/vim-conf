@@ -567,7 +567,7 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
-inoremap {}<Space><CR> {}<LEFT><CR><ESC>O
+inoremap {}<Space><CR> {<CR>}<UP><CR>
 
 " Input date
 nmap <Space>id <ESC>i<C-R>=strftime("[%Y/%m/%d (%a) %H:%M]")<CR><CR>
