@@ -115,10 +115,10 @@ set wildmode=longest:full,list
 
 if has('win32') || has('win64')
     " バックアップファイルを作るディレクトリ
-    set backupdir=$HOMEPATH/vimfiles/etc/backup
+    set backupdir=$USERPROFILE/vimfiles/etc/backup
 
     " スワップファイル用のディレクトリ
-    set directory=$HOMEPATH/vimfiles/etc/backup
+    set directory=$USERPROFILE/vimfiles/etc/backup
 
     " grep設定
     set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m,%f
@@ -127,20 +127,20 @@ if has('win32') || has('win64')
     let mygrepprg   = 'findstr'
 
     " neomru 保存場所
-    let g:neomru#file_mru_path=expand('$HOMEPATH/vimfiles/etcwin/neomru/file')
-    let g:neomru#directory_mru_path=expand('$HOMEPATH/vimfiles/etcwin/neomru/direcroty')
+    let g:neomru#file_mru_path=expand('$USERPROFILE/vimfiles/etcwin/neomru/file')
+    let g:neomru#directory_mru_path=expand('$USERPROFILE/vimfiles/etcwin/neomru/direcroty')
 
     " vimwiki 格納場所
-    let g:vimwiki_list = [{'path':'$HOMEPATH/vimfiles/etc/wiki/', 'path_html':'$HOMEPATH/vimfiles/etc/wikihtml/'}]
+    let g:vimwiki_list = [{'path':'$USERPROFILE/vimfiles/etc/wiki/', 'path_html':'$USERPROFILE/vimfiles/etc/wikihtml/'}]
 
     " NeoComplecache define dictionary.
     let g:neocomplcache_dictionary_filetype_lists = {
                 \ 'default' : '',
-                \ 'vimshell' : '$HOMEPATH/vimfiles/etc/neocomplcache/.vimshell_hist',
-                \ 'scheme' : '$HOMEPATH/vimfiles/etc/neocomplcache/.gosh_completions'
+                \ 'vimshell' : '$USERPROFILE/vimfiles/etc/neocomplcache/.vimshell_hist',
+                \ 'scheme' : '$USERPROFILE/vimfiles/etc/neocomplcache/.gosh_completions'
                 \ }
     " QFixHowm set path
-    let howm_dir = '$HOMEPATH/vimfiles/etc/howm'
+    let howm_dir = '$USERPROFILE/vimfiles/etc/howm'
 
 else
     " バックアップファイルを作るディレクトリ
@@ -189,8 +189,8 @@ endif
 " ### NeoBundle Setting ### {{{
 
 if has('win32') || has('win64')
-    set rtp+=$HOMEPATH/vimfiles/NeoBundle/neobundle.vim/
-    call neobundle#begin(expand('$HOMEPATH/vimfiles/NeoBundle'))
+    set rtp+=$USERPROFILE/vimfiles/NeoBundle/neobundle.vim/
+    call neobundle#begin(expand('$USERPROFILE/vimfiles/NeoBundle'))
 else
     set rtp+=~/.vim/NeoBundle/neobundle.vim/
     call neobundle#begin(expand('~/.vim/NeoBundle'))
