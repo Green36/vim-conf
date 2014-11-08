@@ -107,6 +107,8 @@ set cursorline
 set textwidth=0
 set formatoptions+=q
 
+filetype plugin on
+
 " コマンドモードでの補完設定
 set wildmode=longest:full,list
 " }}}
