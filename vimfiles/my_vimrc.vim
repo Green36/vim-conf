@@ -410,7 +410,8 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd Filetype c,cpp,java,php,rst autocmd BufWritePre <buffer> :%s/\s\+$//e
+" 行末のスペースを削除
+autocmd Filetype c,cpp,h,java,php,rst autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 
 " Enable heavy omni completion.
