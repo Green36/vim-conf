@@ -75,7 +75,6 @@ set guioptions+=a
 
 " ### default ###
 " disp number of line
-set nocompatible
 set number
 
 au GUIEnter * simalt ~x

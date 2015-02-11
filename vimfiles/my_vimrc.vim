@@ -204,7 +204,109 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neomru.vim', {
             \ 'depends' : 'Shougo/unite.vim'
             \ }
-NeoBundle 'Shougo/unite.vim'
+NeoBundleLazy 'Shougo/unite.vim' , {
+    \   'autoload' : { 'commands' : [ 'Unite' ] }
+    \ }
+let s:bundle = neobundle#get('unite.vim')
+function! s:bundle.hooks.on_source(bundle)
+    " ### Unite Setting ### {{{
+    " The prefix key.
+    nnoremap    [unite]   <Nop>
+    nmap   <Space>u [unite]
+
+    " Add bookmark
+    nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+    " bookmark
+    nnoremap <silent> [unite]b :<C-u>Unite bookmark<CR>
+    " history of files opened
+    nnoremap <silent> [unite]u  :<C-u>:Unite file_mru<CR>
+    " current directory
+    nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir -buffer-name=files file file_mru buffer bookmark<CR>
+    " directory for the initial narrowing text.
+    nnoremap <silent> [unite]i  :<C-u>UniteWithBufferDir  -buffer-name=files -prompt=%\  buffer file_mru bookmark file<CR>
+    " files in current directory.
+    nnoremap <silent> [unite]f  :<C-u>UniteWithBufferDir  -buffer-name=files -prompt=%\  file<CR>
+    " buffer
+    nnoremap <silent> [unite]h  :<C-u>Unite buffer<CR>
+    " register
+    nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=register register<CR>
+    " outline
+    nnoremap <silent> [unite]o  :<C-u>Unite -vertical -no-quit -wrap outline<CR>
+    " sources
+    nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=resume resume<CR>
+    " directory_mru
+    nnoremap <silent> [unite]d  :<C-u>Unite -buffer-name=files -default-action=lcd directory_mru<CR>
+    " grep
+    nnoremap <silent> [unite]g  :Unite grep:%:-iHRn<CR>
+    " snipet
+    nnoremap <silent> [unite]s  :Unite snippet<CR>
+
+    nnoremap <silent> [unite]ma :<C-u>Unite mapping<CR>
+    nnoremap <silent> [unite]me :<C-u>Unite output:message<CR>
+    " sources
+    nnoremap  [unite]m  :<C-u>Unite source<CR>
+
+
+    " Start insert.
+    let g:unite_enable_start_insert = 1
+    "let g:unite_enable_short_source_names = 1
+
+    let g:unite_winwidth = 25
+
+    autocmd FileType unite call s:unite_my_settings()
+    function! s:unite_my_settings()"{{{
+        " Overwrite settings.
+    
+        nmap <buffer> <ESC>   <Plug>(unite_exit)
+        imap <buffer> jj      <Plug>(unite_insert_leave)
+    
+        imap <buffer><expr> j unite#smart_map('j', '')
+        imap <buffer> <TAB>   <Plug>(unite_select_next_line)
+        imap <buffer> <C-w>   <Plug>(unite_delete_backward_path)
+        imap <buffer> '       <Plug>(unite_quick_match_default_action)
+        nmap <buffer> '       <Plug>(unite_quick_match_default_action)
+        imap <buffer><expr> x
+                    \ unite#smart_map('x', "\<Plug>(unite_quick_match_choose_action)")
+        nmap <buffer> x       <Plug>(unite_quick_match_choose_action)
+        nmap <buffer> <C-z>   <Plug>(unite_toggle_transpose_window)
+        imap <buffer> <C-z>   <Plug>(unite_toggle_transpose_window)
+        imap <buffer> <C-y>   <Plug>(unite_narrowing_path)
+        nmap <buffer> <C-y>   <Plug>(unite_narrowing_path)
+        nmap <buffer> <C-j>   <Plug>(unite_toggle_auto_preview)
+        nmap <buffer> <C-r>   <Plug>(unite_narrowing_input_history)
+        imap <buffer> <C-r>   <Plug>(unite_narrowing_input_history)
+        nnoremap <silent><buffer><expr> l
+                    \ unite#smart_map('l', unite#do_action('default'))
+
+        let unite = unite#get_current_unite()
+        if unite.buffer_name =~# '^search'
+            nnoremap <silent><buffer><expr> r     unite#do_action('replace')
+        else
+            nnoremap <silent><buffer><expr> r     unite#do_action('rename')
+        endif
+
+        nnoremap <silent><buffer><expr> cd     unite#do_action('lcd')
+        nnoremap <buffer><expr> S      unite#mappings#set_current_filters(
+                    \ empty(unite#mappings#get_current_filters()) ? ['sorter_reverse'] : [])
+    endfunction"}}}
+
+    let g:unite_source_file_mru_limit = 500
+    let g:unite_cursor_line_highlight = 'TabLineSel'
+    let g:unite_abbr_highlight = 'TabLine'
+
+    " For optimize.
+    let g:unite_source_file_mru_filename_format = ''
+
+    if executable('jvgrep')
+        " For jvgrep.
+        let g:unite_source_grep_command = 'jvgrep'
+        let g:unite_source_grep_default_opts = '--exclude ''\.(git|svn|hg|bzr)'''
+        let g:unite_source_grep_recursive_opt = '-R'
+    endif
+
+    " }}}
+endfunction
+" NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline.git'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimproc', {
@@ -224,7 +326,7 @@ NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive.git'
-NeoBundle 'bling/vim-airline'
+" NeoBundle 'bling/vim-airline'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'vim-scripts/Align.git'
 NeoBundle 'adie/BlockDiff'
@@ -267,103 +369,6 @@ xmap <Space>M <Plug>(quickhl-manual-reset)
 " ### fakeclip Setting ### {{{
 vmap ,y "*y
 nmap ,p "*p
-" }}}
-
-" ### Unite Setting ### {{{
-" The prefix key.
-nnoremap    [unite]   <Nop>
-nmap   <Space>u [unite]
-
-" Add bookmark
-nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
-" bookmark
-nnoremap <silent> [unite]b :<C-u>Unite bookmark<CR>
-" history of files opened
-nnoremap <silent> [unite]u  :<C-u>:Unite file_mru<CR>
-" current directory
-nnoremap <silent> [unite]c  :<C-u>UniteWithCurrentDir -buffer-name=files file file_mru buffer bookmark<CR>
-" directory for the initial narrowing text.
-nnoremap <silent> [unite]i  :<C-u>UniteWithBufferDir  -buffer-name=files -prompt=%\  buffer file_mru bookmark file<CR>
-" files in current directory.
-nnoremap <silent> [unite]f  :<C-u>UniteWithBufferDir  -buffer-name=files -prompt=%\  file<CR>
-" buffer
-nnoremap <silent> [unite]h  :<C-u>Unite buffer<CR>
-" register
-nnoremap <silent> [unite]r  :<C-u>Unite -buffer-name=register register<CR>
-" outline
-nnoremap <silent> [unite]o  :<C-u>Unite -vertical -no-quit -wrap outline<CR>
-" sources
-nnoremap <silent> [unite]m  :<C-u>Unite -buffer-name=resume resume<CR>
-" directory_mru
-nnoremap <silent> [unite]d  :<C-u>Unite -buffer-name=files -default-action=lcd directory_mru<CR>
-" grep
-nnoremap <silent> [unite]g  :Unite grep:%:-iHRn<CR>
-" snipet
-nnoremap <silent> [unite]s  :Unite snippet<CR>
-
-nnoremap <silent> [unite]ma :<C-u>Unite mapping<CR>
-nnoremap <silent> [unite]me :<C-u>Unite output:message<CR>
-" sources
-nnoremap  [unite]m  :<C-u>Unite source<CR>
-
-
-" Start insert.
-let g:unite_enable_start_insert = 1
-"let g:unite_enable_short_source_names = 1
-
-let g:unite_winwidth = 25
-
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()"{{{
-    " Overwrite settings.
-
-    nmap <buffer> <ESC>   <Plug>(unite_exit)
-    imap <buffer> jj      <Plug>(unite_insert_leave)
-
-    imap <buffer><expr> j unite#smart_map('j', '')
-    imap <buffer> <TAB>   <Plug>(unite_select_next_line)
-    imap <buffer> <C-w>   <Plug>(unite_delete_backward_path)
-    imap <buffer> '       <Plug>(unite_quick_match_default_action)
-    nmap <buffer> '       <Plug>(unite_quick_match_default_action)
-    imap <buffer><expr> x
-                \ unite#smart_map('x', "\<Plug>(unite_quick_match_choose_action)")
-    nmap <buffer> x       <Plug>(unite_quick_match_choose_action)
-    nmap <buffer> <C-z>   <Plug>(unite_toggle_transpose_window)
-    imap <buffer> <C-z>   <Plug>(unite_toggle_transpose_window)
-    imap <buffer> <C-y>   <Plug>(unite_narrowing_path)
-    nmap <buffer> <C-y>   <Plug>(unite_narrowing_path)
-    nmap <buffer> <C-j>   <Plug>(unite_toggle_auto_preview)
-    nmap <buffer> <C-r>   <Plug>(unite_narrowing_input_history)
-    imap <buffer> <C-r>   <Plug>(unite_narrowing_input_history)
-    nnoremap <silent><buffer><expr> l
-                \ unite#smart_map('l', unite#do_action('default'))
-
-    let unite = unite#get_current_unite()
-    if unite.buffer_name =~# '^search'
-        nnoremap <silent><buffer><expr> r     unite#do_action('replace')
-    else
-        nnoremap <silent><buffer><expr> r     unite#do_action('rename')
-    endif
-
-    nnoremap <silent><buffer><expr> cd     unite#do_action('lcd')
-    nnoremap <buffer><expr> S      unite#mappings#set_current_filters(
-                \ empty(unite#mappings#get_current_filters()) ? ['sorter_reverse'] : [])
-endfunction"}}}
-
-let g:unite_source_file_mru_limit = 500
-let g:unite_cursor_line_highlight = 'TabLineSel'
-let g:unite_abbr_highlight = 'TabLine'
-
-" For optimize.
-let g:unite_source_file_mru_filename_format = ''
-
-if executable('jvgrep')
-    " For jvgrep.
-    let g:unite_source_grep_command = 'jvgrep'
-    let g:unite_source_grep_default_opts = '--exclude ''\.(git|svn|hg|bzr)'''
-    let g:unite_source_grep_recursive_opt = '-R'
-endif
-
 " }}}
 
 " ### neoComplcache Setting ### {{{
