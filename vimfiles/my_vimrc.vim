@@ -445,7 +445,13 @@ let Gtags_Auto_Map=1
 " }}}
 
 " ### vimfiler Setting ### {{{
+call vimfiler#custom#profile('default', 'context', {
+      \ 'safe' : 0,
+      \ })
 let g:vimfiler_as_default_explorer=1
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:unite_kind_file_use_trashbox = 1
 " }}}
 
 " ### easy motion setting ### {{{
