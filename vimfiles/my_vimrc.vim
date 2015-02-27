@@ -212,7 +212,7 @@ function! s:bundle.hooks.on_source(bundle)
     " ### Unite Setting ### {{{
     " The prefix key.
     nnoremap    [unite]   <Nop>
-    nmap   <Space>u [unite]
+    nmap     yu [unite]
 
     " Add bookmark
     nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
