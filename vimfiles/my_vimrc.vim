@@ -326,7 +326,7 @@ NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive.git'
-" NeoBundle 'bling/vim-airline'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'vim-scripts/Align.git'
 NeoBundle 'adie/BlockDiff'
@@ -573,6 +573,7 @@ inoremap []<Space> []<LEFT>
 inoremap ()<Space> ()<LEFT>
 inoremap ""<Space> ""<LEFT>
 inoremap ''<Space> ''<LEFT>
+inoremap ``<Space> ``<LEFT>
 inoremap <><Space> <><LEFT>
 
 " move cursor when it's insert mode
