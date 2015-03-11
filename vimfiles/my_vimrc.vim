@@ -602,29 +602,9 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 " ペースト
 vnoremap <silent> <C-p> "0p
 
-let s:addCentering = 1
-nnoremap <silent><Space>zz :call ToggleCentering()<CR>
-function! ToggleCentering()
-    if s:addCentering == 1
-        let s:addCentering = 0
-        nmap n  nzz
-        nmap N  Nzz
-        nmap *  *zz
-        nmap #  #zz
-        nmap g* g*zz
-        nmap g# g#zz
-        nmap G  Gzz
-    else
-        let s:addCentering = 1
-        nmap n  n
-        nmap N  N
-        nmap *  *
-        nmap #  #
-        nmap g* g*
-        nmap g# g#
-        nmap G  G
-    endif
-endfunction
+nnoremap <silent><Space>zz :call ToggleAddzz()<CR>
+nnoremap <silent><Space>zb :call ToggleAddzb()<CR>
+nnoremap <silent><Space>zt :call ToggleAddzt()<CR>
 
 " highlight ZenkakuSpace {{{
 if has('syntax')
