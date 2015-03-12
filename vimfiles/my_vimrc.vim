@@ -254,12 +254,13 @@ function! s:bundle.hooks.on_source(bundle)
     let g:unite_winwidth = 25
 
     autocmd FileType unite call s:unite_my_settings()
-    function! s:unite_my_settings()"{{{
+    function! s:unite_my_settings()
+    "{{{
         " Overwrite settings.
-    
+
         nmap <buffer> <ESC>   <Plug>(unite_exit)
         imap <buffer> jj      <Plug>(unite_insert_leave)
-    
+
         imap <buffer><expr> j unite#smart_map('j', '')
         imap <buffer> <TAB>   <Plug>(unite_select_next_line)
         imap <buffer> <C-w>   <Plug>(unite_delete_backward_path)
@@ -267,14 +268,9 @@ function! s:bundle.hooks.on_source(bundle)
         nmap <buffer> '       <Plug>(unite_quick_match_default_action)
         imap <buffer><expr> x
                     \ unite#smart_map('x', "\<Plug>(unite_quick_match_choose_action)")
-        nmap <buffer> x       <Plug>(unite_quick_match_choose_action)
         nmap <buffer> <C-z>   <Plug>(unite_toggle_transpose_window)
         imap <buffer> <C-z>   <Plug>(unite_toggle_transpose_window)
-        imap <buffer> <C-y>   <Plug>(unite_narrowing_path)
-        nmap <buffer> <C-y>   <Plug>(unite_narrowing_path)
         nmap <buffer> <C-j>   <Plug>(unite_toggle_auto_preview)
-        nmap <buffer> <C-r>   <Plug>(unite_narrowing_input_history)
-        imap <buffer> <C-r>   <Plug>(unite_narrowing_input_history)
         nnoremap <silent><buffer><expr> l
                     \ unite#smart_map('l', unite#do_action('default'))
 
@@ -288,7 +284,18 @@ function! s:bundle.hooks.on_source(bundle)
         nnoremap <silent><buffer><expr> cd     unite#do_action('lcd')
         nnoremap <buffer><expr> S      unite#mappings#set_current_filters(
                     \ empty(unite#mappings#get_current_filters()) ? ['sorter_reverse'] : [])
-    endfunction"}}}
+
+        nnoremap <silent><buffer><expr> s unite#smart_map('s', unite#do_action('split'))
+        inoremap <silent><buffer><expr> s unite#smart_map('s', unite#do_action('split'))
+
+        nnoremap <silent><buffer><expr> v unite#smart_map('v', unite#do_action('vsplit'))
+        inoremap <silent><buffer><expr> v unite#smart_map('v', unite#do_action('vsplit'))
+
+        nnoremap <silent><buffer><expr> f unite#smart_map('f', unite#do_action('vimfiler'))
+        inoremap <silent><buffer><expr> f unite#smart_map('f', unite#do_action('vimfiler'))
+
+    endfunction
+    "}}}
 
     let g:unite_source_file_mru_limit = 500
     let g:unite_cursor_line_highlight = 'TabLineSel'
