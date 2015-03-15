@@ -482,7 +482,6 @@ let g:indent_guides_guide_size = 1
 " ### vim-airline ### {{{
 let g:airline_left_sep = '»'
 let g:airline_right_sep = '«'
-let g:airline_linecolumn_prefix = 'L.'
 let g:airline#extensions#paste#symbol = 'ρ'
 let g:airline#extensions#whitespace#symbol = 'Ξ'
 " }}}
@@ -537,9 +536,6 @@ let QFixHowm_FileType = 'markdown'
 " タイトル記号
 let QFixHowm_Title = '#'
 
-" qfixappにruntimepathを通す(パスは環境に合わせてください)
-set runtimepath+=~/path/to/qfixapp
-
 " キーマップリーダー
 let QFixHowm_Key = 'g'
 
@@ -547,7 +543,6 @@ let QFixHowm_Key = 'g'
 let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.mkd'
 let howm_fileencoding    = 'utf-8'
 let howm_fileformat      = 'unix'
-
 " }}}
 " }}}
 
@@ -566,6 +561,7 @@ augroup END
 nnoremap qqq: <Esc>q:
 nnoremap qqq/ <Esc>q/
 nnoremap qqq? <Esc>q?
+
 " Disable key ( q:, q/, q? )
 nnoremap q: <Nop>
 nnoremap q/ <Nop>
