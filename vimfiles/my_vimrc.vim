@@ -240,6 +240,8 @@ function! s:bundle.hooks.on_source(bundle)
     nnoremap <silent> [unite]g  :Unite grep:%:-iHRn<CR>
     " snipet
     nnoremap <silent> [unite]s  :Unite snippet<CR>
+    " qfixhowm
+    nnoremap <silent> [unite]q  :Unite qfixhowm<CR>
 
     nnoremap <silent> [unite]ma :<C-u>Unite mapping<CR>
     nnoremap <silent> [unite]me :<C-u>Unite output:message<CR>
@@ -350,7 +352,7 @@ NeoBundle 't9md/vim-quickhl.git'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'fuenor/qfixhowm.git'
-
+NeoBundle 'osyo-manga/unite-qfixhowm'
 
 call neobundle#end()
 " }}}
