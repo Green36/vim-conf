@@ -14,3 +14,8 @@ A source code tagging system.
 
 It is need in order to run the Markdown.pl.
 
+### Exuberant Ctags
+
+[Exuberant Ctags](http://ctags.sourceforge.net/)  
+for Unite-outline  
+

@@ -19,8 +19,6 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
 endif
 
-set autoindent  " always set autoindenting on
-
 " 検索時に大文字小文字を無視 (noignorecase:無視しない)
 set ignorecase
 
@@ -37,7 +35,7 @@ set smarttab
 set tabstop=4
 
 " タブをスペースに展開しない (expandtab:展開する)
-set noexpandtab
+set expandtab
 
 " 自動的にインデントする (noautoindent:インデントしない)
 set autoindent
@@ -54,8 +52,8 @@ set showmatch
 " コマンドライン補完するときに強化されたものを使う(参照 :help wildmenu)
 set wildmenu
 
-" 行番号を非表示 (number:表示)
-set nonumber
+" 行番号を非表示 (nonumber:非表示)
+set number
 
 " ルーラーを表示 (noruler:非表示)
 set ruler
@@ -87,18 +85,12 @@ set title
 set encoding=utf-8
 set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
 
-" display line number
-set number
-
 " set folding
 set foldmethod=marker
 
 " set tab size.
 set softtabstop=4
 set shiftwidth=4
-
-" convert tab to space.
-set expandtab
 
 " highlight cursor line.
 set cursorline
