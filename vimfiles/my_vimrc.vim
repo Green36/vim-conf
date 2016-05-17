@@ -453,6 +453,8 @@ let g:vimfiler_as_default_explorer=1
 let g:vimfiler_tree_opened_icon = '▾'
 let g:vimfiler_tree_closed_icon = '▸'
 let g:unite_kind_file_use_trashbox = 1
+
+nnoremap <silent> fi :VimFiler -split -simple -winwidth=35 -no-quit<CR>
 " }}}
 
 " ### easy motion setting ### {{{
