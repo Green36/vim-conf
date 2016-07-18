@@ -1,21 +1,30 @@
 # Readme
 
-## Required external library
+## 必要な外部ライブラリ
 
 ### GNU make
 
-It is need in order to make the vimproc.
+vimprocで必要
 
 ### GNU global
 
-A source code tagging system.
-
-### perl
-
-It is need in order to run the Markdown.pl.
+タグジャンプに必要
 
 ### Exuberant Ctags
 
 [Exuberant Ctags](http://ctags.sourceforge.net/)  
-for Unite-outline  
+Unite-outlineで必要  
+
+
+## Key map
+
+let mapleader = ","
+
+## よく忘れてしまうコマンド
+
+**Align vim**
+
+| コマンド | 動き |
+|:-----:|:-----:|
+| [Leader]tsp | アライメントを揃える |
 
