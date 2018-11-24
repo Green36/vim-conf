@@ -1,10 +1,10 @@
 
 if has('win32') || has('win64')
-    source $USERPROFILE/vimfiles/my_vimrc.vim
-    source $USERPROFILE/vimfiles/my_func.vim
+    source $USERPROFILE/vimfiles/rc/vimrc.vim
+    source $USERPROFILE/vimfiles/plugin/localFunc.vim
 else
-    source ~/.vim/my_vimrc.vim
-    source ~/.vim/my_func.vim
+    source ~/.vim/rc/vimrc.vim
+    source ~/.vim/plugin/localFunc.vim
 endif
 
 
