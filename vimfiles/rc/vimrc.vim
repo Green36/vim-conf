@@ -345,6 +345,7 @@ NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'fuenor/qfixhowm.git'
 NeoBundle 'osyo-manga/unite-qfixhowm'
+NeoBundle 'lighttiger2505/gtags.vim'
 
 call neobundle#end()
 " }}}
@@ -441,10 +442,6 @@ endif
 
 " }}}
 
-" ### gtags Setting ### {{{
-let Gtags_Auto_Map=1
-" }}}
-
 " ### vimfiler Setting ### {{{
 call vimfiler#custom#profile('default', 'context', {
       \ 'safe' : 0,
@@ -524,6 +521,28 @@ nmap <Leader>w <Plug>(openbrowser-open)
 vmap <Leader>w <Plug>(openbrowser-open)
 
 " }}}
+
+" ### gtags.vim ### {{{
+    " Options
+    let g:Gtags_Auto_Map = 0
+    let g:Gtags_OpenQuickfixWindow = 1
+    " Keymap
+    " Show definetion of function cousor word on quickfix
+    nmap <silent> K :<C-u>exe("Gtags ".expand('<cword>'))<CR>
+    " Show reference of cousor word on quickfix
+    nmap <silent> R :<C-u>exe("Gtags -r ".expand('<cword>'))<CR>
+
+    nmap <silent> <C-n> :<C-u>exe("cn")<CR>
+    nmap <silent> <C-p> :<C-u>exe("cp")<CR>
+
+" :cn'
+"      go to the next line.
+"
+" :cp'
+"      go to the previous line.
+"
+" }}}
+
 
 " ### qfixhowm.vim ### {{{
 " ファイルタイプをmarkdownにする
